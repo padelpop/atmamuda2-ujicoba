@@ -14,7 +14,7 @@
 <body>
 
   <!-- Header & Navigation -->
-  <header class="header" id="header">
+  <header class="header">
   <div class="header-container">
   <div class="logo-section">
     <img src="uploads/logokt.png" class="header-logo">
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <nav class="navbar" id="nav-menu">
+    <nav class="navbar">
       <ul>
         <li><a href="#beranda">Beranda</a></li>
         <li><a href="#tentang">Tentang</a></li>
@@ -404,11 +404,9 @@
 
             // Close mobile menu if open
             const mobileMenu = document.getElementById('nav-menu');
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             if (mobileMenu && mobileMenu.classList.contains('active')) {
               mobileMenu.classList.remove('active');
-              mobileMenuToggle.classList.remove('active');
-              document.body.classList.remove('menu-open');
+              document.getElementById('mobile-menu-toggle').classList.remove('active');
             }
           }
         });
@@ -449,7 +447,6 @@
         mobileMenuToggle.addEventListener('click', () => {
           mobileMenuToggle.classList.toggle('active');
           navMenu.classList.toggle('active');
-          document.body.classList.toggle('menu-open');
         });
       }
     }
@@ -586,37 +583,23 @@
 
   </script>
 
-
-
-<script>
-const slider = document.querySelector(".slider");
-const slides = document.querySelectorAll(".slide");
-const nextBtn = document.querySelector(".next");
-const prevBtn = document.querySelector(".prev");
-
-let counter = 0;
-const totalSlides = slides.length;
-
-function updateSlider() {
-  const slideWidth = slides[0].clientWidth;
-  slider.style.transform = `translateX(-${counter * slideWidth}px)`;
-}
-
-nextBtn.addEventListener("click", () => {
-  if (counter < totalSlides - 1) {
-    counter++;
-    updateSlider();
-  }
+ <script>
+// Mobile Menu Toggle
+document.getElementById("mobile-menu-toggle").addEventListener("click", function() {
+  const navbar = document.querySelector(".navbar ul");
+  const toggle = document.getElementById("mobile-menu-toggle");
+  
+  navbar.classList.toggle("show");
+  toggle.classList.toggle("active");
 });
 
-prevBtn.addEventListener("click", () => {
-  if (counter > 0) {
-    counter--;
-    updateSlider();
-  }
+// Close menu when clicking on a link
+document.querySelectorAll(".navbar ul li a").forEach(link => {
+  link.addEventListener("click", function() {
+    document.querySelector(".navbar ul").classList.remove("show");
+    document.getElementById("mobile-menu-toggle").classList.remove("active");
+  });
 });
-
-window.addEventListener("resize", updateSlider);
 </script>
 
 <script>
