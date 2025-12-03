@@ -14,7 +14,7 @@
 <body>
 
   <!-- Header & Navigation -->
-  <header class="header">
+  <header class="header" id="header">
   <div class="header-container">
   <div class="logo-section">
     <img src="uploads/logokt.png" class="header-logo">
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <nav class="navbar">
+    <nav class="navbar" id="nav-menu">
       <ul>
         <li><a href="#beranda">Beranda</a></li>
         <li><a href="#tentang">Tentang</a></li>
@@ -404,9 +404,11 @@
 
             // Close mobile menu if open
             const mobileMenu = document.getElementById('nav-menu');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             if (mobileMenu && mobileMenu.classList.contains('active')) {
               mobileMenu.classList.remove('active');
-              document.getElementById('mobile-menu-toggle').classList.remove('active');
+              mobileMenuToggle.classList.remove('active');
+              document.body.classList.remove('menu-open');
             }
           }
         });
@@ -447,6 +449,7 @@
         mobileMenuToggle.addEventListener('click', () => {
           mobileMenuToggle.classList.toggle('active');
           navMenu.classList.toggle('active');
+          document.body.classList.toggle('menu-open');
         });
       }
     }
@@ -583,11 +586,7 @@
 
   </script>
 
- <script>
-document.getElementById("mobile-menu-toggle").addEventListener("click", function() {
-  document.querySelector(".navbar ul").classList.toggle("show");
-});
-</script>
+
 
 <script>
 const slider = document.querySelector(".slider");
